@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 
-class HomeComponent extends Component{
+class CategoryComponent extends Component{
     render(){
         return(
             <View>
-                <Text>Home component</Text>
+                <Text>Category component</Text>
             </View>
         )
     }
 }
 
-export default HomeComponent;
+export default CategoryComponent;
