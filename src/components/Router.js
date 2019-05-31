@@ -5,25 +5,26 @@ import {
     createBottomTabNavigator
 } from 'react-navigation';
 import FontIcon from 'react-native-vector-icons/FontAwesome';
+
 import HomeComponent from './HomeComponent';
 import CategoryComponent from './CategoryComponent';
 import UserComponent from './UserComponent';
 import SettingComponent from './SettingComponent';
 
-export const HomeStack = createBottomTabNavigator({
-    Home: { screen: HomeComponent }
+export const HomeStack = createStackNavigator({
+    "Home": { screen: HomeComponent }
 });
 
 export const CategoryStack = createStackNavigator({
-    Category: { screen: CategoryComponent }
+    "Category": { screen: CategoryComponent }
 });
 
 export const UserStack = createStackNavigator({
-    User: { screen: UserComponent }
+    "User": { screen: UserComponent }
 });
 
 export const SettingStack = createStackNavigator({
-    Setting: { screen: SettingComponent }
+    "Setting": { screen: SettingComponent }
 });
 
 export const MainRouter = createBottomTabNavigator({
