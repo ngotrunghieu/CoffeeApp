@@ -27,8 +27,7 @@ export default class LoginComponent extends Component {
     this.state = {
 			username: '',
 			password: '',
-			status: false,
-			message: ''
+      isLogin: true
 		}
   }
 
@@ -36,33 +35,21 @@ export default class LoginComponent extends Component {
     header: null
   };
 
-  _onPress = (username, password) => {
-    this.props.onSubmitLogin(username, password);
-  
-		// this.setState({
-		// 	status: LoginReducer.status,
-		// 	message: LoginReducer.message
-		// });
 
-		// const {status, message} = this.state;
-		// if (status === true) {
-		// 	this.setState({
-    //     status: false,
-    //     message: ''
-    //   });
-    //   Alert.alert('dung roi')
-		// } else {
-    //   this.setState({
-    //     status: false,
-    //     message: ''
-    //   });
-		// 	Alert.alert('sai roi')
-		// }
+  componentWillReceiveProps(nextprops) {
+    if(this.props.data.LoginReducer !== nextprops.data.LoginReducer) {
+      if (nextprops.data.LoginReducer.status === true) {
+        this.props.navigation.navigate('Home');
+        this.setState({isLogin: true});
+      } else {
+        this.setState({isLogin: false});
+      }
+    }
   }
-  
-  render() {
-    const {LoginReducer} = this.props.data;
 
+  componentWillMount
+
+  render() {
     return (
       <TouchableWithoutFeedback style={styles.container} onPress={Keyboard.dismiss}>
         <View style={styles.container}>
@@ -71,7 +58,7 @@ export default class LoginComponent extends Component {
             <View style={styles.textInputContainer}>
               <TextInput
                 style={styles.textInput}
-                returnKeyType='Next'
+                //returnKeyType='Next'
                 autoCorrect={false}
                 placeholder={'Enter your Username'}
                 onSubmitEditing={() => this.refs.txtPassword.focus()}
@@ -83,19 +70,25 @@ export default class LoginComponent extends Component {
                 style={styles.textInput}
                 placeholder={'Enter your password'}
                 secureTextEntry={true}
-                returnKeyType='Go'
+                //returnKeyType='Go'
                 autoCorrect={false}
                 ref={"txtPassword"}
                 onChangeText={(text) => this.setState({ password: text })}
               />
             </View>
 
+            {/* show or hide validate */}
+            {this.state.isLogin ? null :
+              (
+                <View style={styles.validate}>
+                  <Text style={styles.textValidate}>Username or password incorrect!</Text>
+                </View>
+              )
+            }
+            
             <TouchableOpacity
               style={styles.loginButton}
-              onPress={() => {
-                const { username, password } = this.state;
-                this._onPress(username, password);
-              }}
+              onPress={() => { this.props.onSubmitLogin(this.state.username, this.state.password)}}
             >
               <Text style={styles.loginButtonTitle}>LOGIN</Text>
             </TouchableOpacity>
@@ -142,5 +135,13 @@ const styles = StyleSheet.create({
 	loginButtonTitle: {
 		fontSize: 18,
 		color: 'white'
-	},
+  },
+  validate: {
+    marginTop: 10,
+
+  },
+  textValidate: {
+    color: 'red',
+    flexDirection: 'row'
+  }
 });
