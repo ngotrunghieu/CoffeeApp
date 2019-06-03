@@ -1,8 +1,7 @@
 import React from 'react';
 import {
     createStackNavigator,
-    createAppContainer,
-    createBottomTabNavigator
+    createAppContainer
 } from 'react-navigation';
 
 import Splash from './components/Splash';

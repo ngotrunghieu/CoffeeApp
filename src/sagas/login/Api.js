@@ -1,14 +1,36 @@
-const fake = {'username': 'hieunt68', 'password': '123'};
+const mainUrl = 'http://192.168.1.4:3000';
+
+
 const loginFromApi = function* loginFromApi(username, password) {
-    if (username === fake.username && password === fake.password){
+    const url = `${mainUrl}/user/${username}`;
+    // const response = yield fetch(url, {
+    //     method: 'GET',
+    //     headers: {
+    //         Accept: 'application/json',
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: '',
+    // });
+    // console.log('res:' + JSON.stringify(response));
+    // return response;
+    const response = yield fetch(url).then((res) => res.json()).then((responseJson) => {
+        return responseJson;
+    }).catch(err => console.log(err));
+    // console.log(`res from API: ${JSON.stringify(response)}`);
+    // console.log(`username: ${username} -- ${response.UserName}`);
+    // console.log(`password: ${password} -- ${response.Password}`);
+
+    if (username === response.UserName && password === response.Password) {
+        console.log(`success`);
         return {
             status: true,
-            message: 'username or password correct!'
+            message: 'username or password correct!',
         }
-    }else{
-        return{
+    } else {
+        console.log(`fail`);
+        return {
             status: false,
-            message: 'username or password incorrect!'
+            message: 'username or password incorrect!',
         }
     }
 };

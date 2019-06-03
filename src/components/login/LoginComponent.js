@@ -39,8 +39,8 @@ export default class LoginComponent extends Component {
   componentWillReceiveProps(nextprops) {
     if(this.props.data.LoginReducer !== nextprops.data.LoginReducer) {
       if (nextprops.data.LoginReducer.status === true) {
-        this.props.navigation.navigate('Main');
         this.setState({isLogin: true});
+        this.props.navigation.navigate('Main');
       } else {
         this.setState({isLogin: false});
       }

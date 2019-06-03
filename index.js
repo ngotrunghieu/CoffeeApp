@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react';
 import {AppRegistry} from 'react-native';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import allReducers from './src/reduecers/index';
 import createSagaMiddleware from 'redux-saga';
@@ -13,7 +13,12 @@ import AppNavigator from './src/Router';
 import {name as appName} from './app.json';
 
 const sagaMiddleware = createSagaMiddleware();
-let store = createStore(allReducers, applyMiddleware(sagaMiddleware));
+const reduxDevTools =
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+let store = createStore(
+                        allReducers,
+                        compose(applyMiddleware(sagaMiddleware), reduxDevTools)
+                        );
 
 export default class App extends Component{
     render(){
