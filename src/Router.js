@@ -21,7 +21,7 @@ const AppNavigator = createStackNavigator({
     }
 }, {
         //setting
-        initialRouteName: 'Splash',
+        initialRouteName: 'Main', //'Splash',
     });
 
 export default createAppContainer(AppNavigator);

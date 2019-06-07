@@ -1,9 +1,20 @@
 import * as Types from './ActionTypes';
 
-export const atcLogin = (username, password) => {
+const atcLogin = (username, password) => {
     return {
         type: Types.LOGIN,
         username,
         password
     }
 };
+
+const actFetchAllTable = () => {
+    return{
+        type: Types.FETCH_ALL_TABLE
+    }
+}
+
+export default action = {
+    atcLogin,
+    actFetchAllTable
+}

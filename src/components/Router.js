@@ -6,13 +6,13 @@ import {
 } from 'react-navigation';
 import FontIcon from 'react-native-vector-icons/FontAwesome';
 
-import HomeComponent from './HomeComponent';
+import HomeContainer from '../containers/HomeContainer';
 import CategoryComponent from './CategoryComponent';
 import UserComponent from './UserComponent';
 import SettingComponent from './SettingComponent';
 
 export const HomeStack = createStackNavigator({
-	"Home": { screen: HomeComponent }
+	"Home": { screen: HomeContainer }
 });
 
 export const CategoryStack = createStackNavigator({

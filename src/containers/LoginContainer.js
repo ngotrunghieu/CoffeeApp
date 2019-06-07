@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import {atcLogin} from '../actions/index';
+import action from '../actions/index';
 import LoginComponent from '../components/login/LoginComponent';
 
 const mapStateToProps = (state) =>{
@@ -9,7 +9,7 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = (dispatch) => {
     return {
         onSubmitLogin: (userName, password) => {
-            dispatch(atcLogin(userName, password))
+            dispatch(action.atcLogin(userName, password))
         }
     }
 };
@@ -17,4 +17,3 @@ const mapDispatchToProps = (dispatch) => {
 const LoginContainer = connect(mapStateToProps, mapDispatchToProps)(LoginComponent);
 
 export default LoginContainer;
-

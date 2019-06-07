@@ -1,3 +1,7 @@
 export const LOGIN = 'LOGIN';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
+
+export const FETCH_ALL_TABLE = 'FETCH_ALL_TABLE';
+export const FETCH_ALL_TABLE_SUCCESS = 'FETCH_ALL_TABLE_SUCCESS';
+export const FETCH_ALL_TABLE_ERROR = 'FETCH_ALL_TABLE_ERROR';

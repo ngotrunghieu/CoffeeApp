@@ -15,10 +15,10 @@ import {
   , TextInput
   , TouchableOpacity
   , Text
-  , Alert
 } from 'react-native';
 
 import LogoComponent from './LogoComponent';
+
 
 export default class LoginComponent extends Component {
   constructor(props) {
@@ -27,7 +27,9 @@ export default class LoginComponent extends Component {
     this.state = {
 			username: '',
 			password: '',
-      isLogin: true
+      isLogin: true,
+      isUserName: true,
+      isPassword: true
 		}
   }
 
@@ -35,6 +37,19 @@ export default class LoginComponent extends Component {
     header: null
   };
 
+  _onPress = (username, password) => {
+    if (username === null || username === '') {
+      this.setState({
+        isLogin: false
+      });
+    }else if (password === null || password === '') {
+      this.setState({
+        isLogin: false
+      });
+    }else{
+      this.props.onSubmitLogin(username, password);
+    }
+  }
 
   componentWillReceiveProps(nextprops) {
     if(this.props.data.LoginReducer !== nextprops.data.LoginReducer) {
@@ -46,8 +61,6 @@ export default class LoginComponent extends Component {
       }
     }
   }
-
-  componentWillMount
 
   render() {
     return (
@@ -88,7 +101,7 @@ export default class LoginComponent extends Component {
             
             <TouchableOpacity
               style={styles.loginButton}
-              onPress={() => { this.props.onSubmitLogin(this.state.username, this.state.password)}}
+              onPress={() => { this._onPress(this.state.username, this.state.password)}}
             >
               <Text style={styles.loginButtonTitle}>LOGIN</Text>
             </TouchableOpacity>
@@ -142,6 +155,7 @@ const styles = StyleSheet.create({
   },
   textValidate: {
     color: 'red',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent: 'flex-start'
   }
 });
